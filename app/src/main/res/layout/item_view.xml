@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkbox_blank"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/task_item_tv"
+            tools:text = "do something"
+            android:layout_alignTop="@+id/checkbox_blank"
+            android:layout_alignBottom="@+id/checkbox_blank"
+            android:layout_toEndOf="@+id/checkbox_blank"
+            android:gravity="center_vertical"
+            />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_unpriotiy_flag"
+        android:layout_alignParentEnd="true"/>
+
+</RelativeLayout>
