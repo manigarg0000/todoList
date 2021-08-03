@@ -11,6 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ToDoList">
         <activity
+            android:name=".AddNewTaskActivity"
+            android:exported="true"
+            android:label="@string/title_activity_add_new_task"
+            android:theme="@style/Theme.ToDoList.NoActionBar" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
