@@ -17,4 +17,5 @@ interface TaskDao {
 
     @Query("SELECT * FROM task_table")
     fun getAll() : Flow<List<Task>>
+
 }
