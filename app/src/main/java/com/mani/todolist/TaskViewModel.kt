@@ -17,7 +17,7 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
 
 }
 
-class WordViewModelFactory(private val repository: TaskRepository) : ViewModelProvider.Factory{
+class TaskViewModelFactory(private val repository: TaskRepository) : ViewModelProvider.Factory{
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if(modelClass.isAssignableFrom(TaskViewModel::class.java)){
             @Suppress("UNCHECKED_CAST")
