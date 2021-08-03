@@ -29,6 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_unpriotiy_flag"
-        android:layout_alignParentEnd="true"/>
+        android:layout_alignParentEnd="true"
+        android:foregroundGravity="center"/>
 
 </RelativeLayout>

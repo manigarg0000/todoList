@@ -1,6 +1,6 @@
 package com.mani.todolist
 
-import android.content.Context
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
-class TaskListAdapter (private val context : Context) : ListAdapter<Task, TaskListAdapter.TaskViewHolder>(TaskComparator()) {
+class TaskListAdapter() : ListAdapter<Task, TaskListAdapter.TaskViewHolder>(TaskComparator()) {
 
         class TaskViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
             val taskTV : TextView = itemView.findViewById(R.id.task_item_tv)
@@ -34,7 +34,7 @@ class TaskListAdapter (private val context : Context) : ListAdapter<Task, TaskLi
 
         override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
             val current = getItem(position)
-            holder.bind(current.name)
+            holder.bind(current.task)
 
 //            holder.taskTV.setOnClickListener {
 //                val queryUrl: Uri = Uri.parse("${MainActivity.PREFIX_FORSEARCH}${current.word}")
@@ -54,7 +54,7 @@ class TaskListAdapter (private val context : Context) : ListAdapter<Task, TaskLi
         }
 
         override fun areContentsTheSame(oldItem: Task, newItem: Task): Boolean {
-            return oldItem.name == newItem.name
+            return oldItem.task == newItem.task
         }
 
     }

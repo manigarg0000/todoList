@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         val fab = findViewById<FloatingActionButton>(R.id.fab_addNew)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        val adapter = TaskListAdapter(this)
+        val adapter = TaskListAdapter()
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
