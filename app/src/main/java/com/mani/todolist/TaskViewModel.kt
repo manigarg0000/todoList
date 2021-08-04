@@ -5,6 +5,7 @@ import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
 
 class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
+
     val getAllWords : LiveData<List<Task>> = repository.allWords.asLiveData()
 
     fun insert(word: Task) = viewModelScope.launch {

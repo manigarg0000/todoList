@@ -3,18 +3,36 @@ package com.mani.todolist
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class MainActivity : AppCompatActivity() {
+class MainActivity() : AppCompatActivity() {
 
     private val requestCodeForAddWordActivity = 1
     private val viewModel : TaskViewModel by viewModels{
         TaskViewModelFactory((application as TaskApplication).repository)
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.menu_task, menu)
+        val searchItem = menu?.findItem(R.id.search_icon)
+        val searchView = searchItem?.actionView as SearchView
+
+
+        searchView.onQueryTextChanged {
+           (application as TaskApplication).repository.searchQuery.value = it
+        }
+
+        return true
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

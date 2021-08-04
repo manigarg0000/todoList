@@ -2,10 +2,18 @@ package com.mani.todolist
 
 import androidx.annotation.WorkerThread
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.flatMapLatest
 
 class TaskRepository(private val taskDao: TaskDao) {
 
-    val allWords : Flow<List<Task>> = taskDao.getAll()
+    val searchQuery = MutableStateFlow("")
+
+    private val taskFlow = searchQuery.flatMapLatest {
+        taskDao.getAll(it)
+    }
+
+    val allWords : Flow<List<Task>> = taskFlow
 
     @Suppress("RedundantSuppressModifier")
     @WorkerThread
