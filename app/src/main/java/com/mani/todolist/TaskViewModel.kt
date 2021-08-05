@@ -20,6 +20,9 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
     fun onTaskCheckedChanged(task: Task, isChecked: Boolean) = viewModelScope.launch {
         repository.update(task.copy(completed = isChecked))
     }
+    fun onImageViewChanged(task: Task, isChecked: Boolean) = viewModelScope.launch {
+        repository.update(task.copy(important = isChecked))
+    }
 
 }
 

@@ -23,6 +23,10 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     override fun onCheckBoxClick(task: Task, isChecked: Boolean) {
         viewModel.onTaskCheckedChanged(task, isChecked)
     }
+    override fun onImageViewClick(task: Task, isChecked: Boolean) {
+        viewModel.onImageViewChanged(task, isChecked)
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater

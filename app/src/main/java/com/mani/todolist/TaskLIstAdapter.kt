@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -16,11 +17,17 @@ class TaskListAdapter(private val listener: OnItemClickListener) : ListAdapter<T
         class TaskViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
             val taskTV: TextView = itemView.findViewById(R.id.task_item_tv)
             val checkBox: CheckBox = itemView.findViewById(R.id.checkbox_blank)
+            val image: ImageView = itemView.findViewById(R.id.img_imp)
 
             fun bind(task: Task){
                 taskTV.text = task.task
                 checkBox.isChecked = task.completed
                 taskTV.paint.isStrikeThruText = task.completed
+                if(task.important){
+                    image.setImageResource(R.drawable.ic_prioritise_flag)
+                }else{
+                    image.setImageResource(R.drawable.ic_unpriotiy_flag)
+                }
             }
 
 
@@ -48,6 +55,13 @@ class TaskListAdapter(private val listener: OnItemClickListener) : ListAdapter<T
                     listener.onCheckBoxClick(task, holder.checkBox.isChecked)
                 }
             }
+
+            holder.image.setOnClickListener {
+                if (position != RecyclerView.NO_POSITION) {
+                    val task = getItem(position)
+                    listener.onImageViewClick(task, !(task.important))
+                }
+            }
         }
 
     }
@@ -55,6 +69,7 @@ class TaskListAdapter(private val listener: OnItemClickListener) : ListAdapter<T
 interface OnItemClickListener {
     //fun onItemClick(task: Task)
     fun onCheckBoxClick(task: Task, isChecked: Boolean)
+    fun onImageViewClick(task: Task, isChecked: Boolean)
 }
 
     class TaskComparator : DiffUtil.ItemCallback<Task>(){
