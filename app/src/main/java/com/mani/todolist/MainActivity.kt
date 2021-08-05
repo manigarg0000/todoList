@@ -1,5 +1,6 @@
 package com.mani.todolist
 
+
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -51,6 +53,21 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
                 true
             }
             R.id.delete_complete -> {
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Deletion confirmation")
+                builder.setMessage("Are you sure you want to delete the completed tasks?")
+                builder.setPositiveButton("Yes"){dialogInterface, which ->
+                    viewModel.onDeleteCompleted()
+                }
+
+                builder.setNegativeButton("No"){dialogInterface, which ->
+                    Toast.makeText(applicationContext,"clicked No",Toast.LENGTH_LONG).show()
+                }
+
+                val alertDialog: AlertDialog = builder.create()
+                alertDialog.setCancelable(false)
+                alertDialog.show()
+
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -115,5 +132,6 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     companion object {
         val PREFIX_FORSEARCH = "https://www.google.com/search?q="
     }
+
 
 }

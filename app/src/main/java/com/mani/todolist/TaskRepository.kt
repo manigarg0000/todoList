@@ -42,5 +42,11 @@ class TaskRepository(private val taskDao: TaskDao) {
         taskDao.update(task)
     }
 
+    @Suppress("RedundantSuppressModifier")
+    @WorkerThread
+    suspend fun deleteCompleted(){
+        taskDao.deleteCompletedTasks()
+    }
+
 
 }
