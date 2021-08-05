@@ -15,7 +15,7 @@ interface TaskDao {
     @Update
     suspend fun update(task: Task)
 
-    @Query("SELECT * FROM task_table WHERE task LIKE '%' || :searchQuery || '%' ")
-    fun getAll(searchQuery:String) : Flow<List<Task>>
+    @Query("SELECT * FROM task_table WHERE(completed != :hideCompleted OR completed = 0) AND task LIKE '%' || :searchQuery || '%' ORDER BY important DESC")
+    fun getAll(searchQuery:String, hideCompleted : Boolean) : Flow<List<Task>>
 
 }

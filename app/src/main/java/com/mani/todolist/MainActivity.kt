@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
@@ -41,7 +42,20 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
 
         return true
     }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
 
+            R.id.hide_complete-> {
+                item.isChecked = !item.isChecked
+                viewModel.onHideCompletedClick(item.isChecked)
+                true
+            }
+            R.id.delete_complete -> {
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

@@ -24,6 +24,10 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
         repository.update(task.copy(important = isChecked))
     }
 
+    fun onHideCompletedClick(hideCompleted: Boolean) = viewModelScope.launch {
+            repository.hideCompleted.value = hideCompleted
+    }
+
 }
 
 class TaskViewModelFactory(private val repository: TaskRepository) : ViewModelProvider.Factory{
