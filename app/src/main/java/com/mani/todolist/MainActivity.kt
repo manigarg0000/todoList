@@ -13,13 +13,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class MainActivity() : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnItemClickListener {
 
     private val requestCodeForAddWordActivity = 1
     private val viewModel : TaskViewModel by viewModels{
         TaskViewModelFactory((application as TaskApplication).repository)
     }
 
+    override fun onCheckBoxClick(task: Task, isChecked: Boolean) {
+        viewModel.onTaskCheckedChanged(task, isChecked)
+    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
@@ -41,7 +44,7 @@ class MainActivity() : AppCompatActivity() {
         val fab = findViewById<FloatingActionButton>(R.id.fab_addNew)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        val adapter = TaskListAdapter()
+        val adapter = TaskListAdapter(this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 

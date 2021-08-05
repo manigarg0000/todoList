@@ -28,7 +28,7 @@ abstract class TaskDatabase : RoomDatabase()  {
 
         suspend fun populateDatabase(taskDao: TaskDao){
             taskDao.insert(Task("Wash Dished"))
-            taskDao.insert(Task("Repair laptop"))
+            taskDao.insert(Task("Repair laptop", true))
         }
     }
 

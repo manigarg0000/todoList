@@ -16,6 +16,11 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
         repository.delete(word)
     }
 
+
+    fun onTaskCheckedChanged(task: Task, isChecked: Boolean) = viewModelScope.launch {
+        repository.update(task.copy(completed = isChecked))
+    }
+
 }
 
 class TaskViewModelFactory(private val repository: TaskRepository) : ViewModelProvider.Factory{
