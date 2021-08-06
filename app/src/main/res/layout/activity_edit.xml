@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="260dp"
         android:textStyle="bold"
-        android:text="Save"
+        android:text="Update"
         android:textSize="20dp"
         android:fontFamily="serif-monospace"
         app:layout_constraintBottom_toBottomOf="parent"

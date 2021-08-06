@@ -10,12 +10,12 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
 
     val getAllWords: LiveData<List<Task>> = repository.allWords.asLiveData()
 
-    fun insert(word: Task) = viewModelScope.launch {
-        repository.insert(word)
+    fun insert(task: Task) = viewModelScope.launch {
+        repository.insert(task)
     }
 
-    fun onSwipe(word: Task) = viewModelScope.launch {
-        repository.delete(word)
+    fun onSwipe(task: Task) = viewModelScope.launch {
+        repository.delete(task)
     }
 
 
