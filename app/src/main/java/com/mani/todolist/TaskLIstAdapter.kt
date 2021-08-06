@@ -1,6 +1,8 @@
 package com.mani.todolist
 
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +13,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
-class TaskListAdapter(private val listener: OnItemClickListener) : ListAdapter<Task, TaskListAdapter.TaskViewHolder>(TaskComparator()) {
+class TaskListAdapter(private val listener: OnItemClickListener, private val context: Context) : ListAdapter<Task, TaskListAdapter.TaskViewHolder>(TaskComparator()) {
 
 
         class TaskViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
@@ -62,12 +64,20 @@ class TaskListAdapter(private val listener: OnItemClickListener) : ListAdapter<T
                     listener.onImageViewClick(task, !(task.important))
                 }
             }
-        }
+            holder.taskTV.setOnClickListener {
+                if (position != RecyclerView.NO_POSITION) {
+                    val task = getItem(position)
+                    val intent = Intent(context, EditActivity::class.java)
+                    intent.putExtra("extra", task.task)
+                    context.startActivity(intent)
+                }
+
+            }
 
     }
+}
 
 interface OnItemClickListener {
-    //fun onItemClick(task: Task)
     fun onCheckBoxClick(task: Task, isChecked: Boolean)
     fun onImageViewClick(task: Task, isChecked: Boolean)
 }

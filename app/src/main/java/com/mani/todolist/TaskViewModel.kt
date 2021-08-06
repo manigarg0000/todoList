@@ -34,6 +34,10 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
     fun onDeleteCompleted() = viewModelScope.launch {
         repository.deleteCompleted()
     }
+
+    fun onTextChanged(text:String) = viewModelScope.launch {
+        repository.insert(Task(text))
+    }
 }
 class TaskViewModelFactory(private val repository: TaskRepository) : ViewModelProvider.Factory{
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
