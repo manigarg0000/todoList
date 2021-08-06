@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 
@@ -27,6 +28,7 @@ class EditActivity : AppCompatActivity() {
         save.setOnClickListener {
             viewModel.insert(Task(editText.text.toString()))
             val intent = Intent(this, MainActivity::class.java)
+            Toast.makeText(this, "Task updated", Toast.LENGTH_LONG).show()
             intent.putExtra("extraresult", editText.text.toString())
             startActivity(intent)
         }
